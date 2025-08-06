@@ -1,7 +1,10 @@
+import CalendarCom from "../components/CalendarPage"
 
 const Calendar = () => {
   return (
-    <div>Calendar</div>
+    <div className="containers">
+      <CalendarCom/>
+    </div>
   )
 }
 

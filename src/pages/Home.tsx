@@ -3,17 +3,20 @@ import { useNavigate } from "react-router-dom";
 import { API } from "../hooks/getEnv";
 import { useEffect, useState } from "react";
 import type { UserType } from "../@types";
-import { CalendarIcon } from "../assets/icons";
-import API_GET from "../api/api";
+import { CalendarIcon, PlusIcon, WalletIcon } from "../assets/icons";
 import axios from "axios";
-import { EyeFilled, EyeInvisibleFilled } from "@ant-design/icons";
 import CommonCreditsDiv from "../components/CommonCreditsDiv";
+import Payments from "../components/Payments";
+import { FormatterPrice } from "../hooks/FormatterPrice";
+import Footer from "../components/Footer";
 
 const Home = () => {
     const [cookies, __, removeCookie] = useCookies(["token"]);
     const navigate = useNavigate();
     const [user, setUser] = useState<UserType | null>(null);
     const [common, setCommon] = useState<any>(null)
+    const [overdue, setOverdue] = useState<any>(null)
+    const [clientsCount, setClientsCount] = useState<any>(null)
     const handleLogout = () => {
         removeCookie("token", { path: "/" });
         navigate("/login");
@@ -23,8 +26,10 @@ const Home = () => {
 
     const fetchUser = async () => {
       try {
+         await axios.get(`${API}/debt/overdue`).then(res => {console.log(res)  ;      setOverdue(res.data)})
          await axios.get(`${API}/common/debts`, {headers: {Authorization: `Bearer ${cookies.token}`}}).then(res => setCommon(res.data))
-        const res = await API_GET.get('/auth/me');
+         await axios.get(`${API}/debter`).then(res => setClientsCount(res.data.total))
+        const res = await axios.get(`${API}/auth/me`, {headers: {Authorization: `Bearer ${cookies.token}`}});
         setUser(res.data);
         console.log(res.data);
         console.log(common);
@@ -40,6 +45,7 @@ const Home = () => {
   }, [cookies.token]);
 
     return (
+        <div className="min-h-screen flex flex-col justify-between">
         <div className="containers !mt-[29px] ">
             <div className="flex justify-between items-center">
                 <div className="flex gap-[15px] items-center ">
@@ -54,9 +60,37 @@ const Home = () => {
                 />
                 <p className="text-black  ">{user?.login}</p>
                 </div>
-                <button className="bg-[#F5F5F5] p-2 rounded-[12px] border-[2px] border-[#EDEDED] "><CalendarIcon/></button>
+                <button onClick={() => navigate("/calendar")} className="bg-[#F5F5F5] p-2 rounded-[12px] border-[2px] border-[#EDEDED] "><CalendarIcon/></button>
             </div>
             <CommonCreditsDiv/>
+            <div className="flex justify-between mt-[31px]">
+              <Payments count={overdue } title="Kechiktirilgan to‘lovlar" type="red" />
+            <Payments count={clientsCount } title="Mijozlar soni" type="green" />
+            </div>
+
+
+            <div className="flex  flex-col gap-[28px] mt-[40px] ">
+                <h2 className="text-[18px] font-semibold " >Hamyoningiz</h2>   
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-[12px]">
+                    <div className=" flex items-center justify-center w-[48px] h-[48px] rounded-full bg-[#735CD81A] ">
+                    <WalletIcon/>
+                    </div>
+                    <div>
+                      <p className="text-[13px] font-medium leading-[100%] ">Hisobingizda</p>
+                      <p className="flex gap-[10px] font-bold text-[24px] leading-[100%] " >{user?.balance ? FormatterPrice(user.balance) : FormatterPrice(300000)} <p className="font-bold text-[18px] ">so'm</p></p>
+                    </div>
+                  </div>
+                  <button className="text-white bg-[#3478F7] rounded-full flex items-center justify-center w-[36px] h-[36px] "><PlusIcon/></button>
+                </div>
+                <div className="flex justify-between">
+                  <p className="text-[14px] font-medium " >Bu oy uchun to‘lov:</p>
+                  <p className="text-[14px] font-medium text-[#30AF49] " >To'lov qilingan</p>
+                </div>
+            </div>
+
+        </div>
+        <Footer/>
         </div>
     );
 };
