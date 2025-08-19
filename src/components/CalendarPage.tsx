@@ -1,6 +1,5 @@
 import { ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
-// import { Button } from "@/components/ui/button"
 
 export default function CalendarCom() {
   const daysOfWeek = ["DU", "SE", "CH", "PA", "JU", "SH", "YA"]
@@ -59,7 +58,7 @@ export default function CalendarCom() {
       </div> */}
 
       <div className="flex items-center justify-between px-4 py-4">
-        <button onClick={() => navigate(-1)} className="p-0">
+        <button onClick={() => navigate("/")} className="p-0">
           <ArrowLeft className="h-6 w-6" />
         </button>
         <h1 className="text-lg font-semibold">Kalendar</h1>

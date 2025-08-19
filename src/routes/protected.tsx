@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const [cookies] = useCookies(['token']);
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
 
   if (!cookies.token) {
     return <Navigate to="/login" replace />;

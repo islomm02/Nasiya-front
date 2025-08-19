@@ -1,23 +1,42 @@
-import { Calendar, Chat, Clients, ClientsMore, CreateClient, CreateCreadit, CreateExample, CreditMore, EditDetails, ExampleMessages, Help, HistoryPayments, Home, Login, NotFound, Settings } from "../pages"
+import { Calendar, Chat, Clients, ClientsMore, CreateClient, CreateCreadit, CreateExample, CreditMore, EditDetails, ExampleMessages, Help, HistoryPayments, Home, Login, NotFound, Report, Settings } from "../pages"
+import AboutApp from "../pages/AboutApp"
+import ChatCreate from "../pages/ChatCreate"
+import CreditEdit from "../pages/CreditEdit"
+import ExampleEdit from "../pages/ExampleEdit"
+import Excition from "../pages/excition"
+import PayBalance from "../pages/PayBalance"
+import Profile from "../pages/Profile"
+import ReportMore from "../pages/ReportMore"
+import Suggestions from "../pages/Suggestions"
 
 
 export const paths = {
     home: "/",
     login: "/login",
+    profile: "/profile",
     calendar: "/calendar",
     clients: "/clients",
     clientsMore: "/clients/:id",
     createClient: "/clients/create",
     credits: "/credits",
     creditsMore: "/credits/:id",
-    creditscreate: "/credits/create",
+    creditsEdit: "/credits/:id/edit",
+    creditscreate: "/credits/create/:id",
     exampleMessages: "/examples",
+    exampleMessagesEdit: "/examples/edit/:id",
     createExample: "/examples/create",
     settings: "/settings",
+    aboutApp: "/about-app",
     editDetails: "/settings/edit",
     help: "/settings/help",
     historyPayments: "/history/payments",
     messages: "/history/messages",
+    payBalance: "/pay-balance",
+    excition: "/excition/:id",
+    report: "/report",
+    suggestions: "/suggestions",
+    reportMore: "/report/:id",
+    createChat: "/chat/create",
     notFound: "*"
 }
 export const RoutesList = [
@@ -103,6 +122,56 @@ export const RoutesList = [
     },
     {
         id: 16,
+        path: paths.payBalance,
+        element: <PayBalance/>
+    },
+    {
+        id: 17,
+        path: paths.excition,
+        element: <Excition/>
+    },
+    {
+        id: 18,
+        path: paths.report,
+        element: <Report/>
+    },
+    {
+        id: 19,
+        path: paths.creditsEdit,
+        element: <CreditEdit/>
+    },
+    {
+        id: 20,
+        path: paths.reportMore,
+        element: <ReportMore/>
+    },
+    {
+        id: 21,
+        path: paths.createChat,
+        element: <ChatCreate/>
+    },
+    {
+        id: 22,
+        path: paths.exampleMessagesEdit,
+        element: <ExampleEdit/>
+    },
+    {
+        id: 23,
+        path: paths.profile,
+        element: <Profile/>
+    },
+    {
+        id: 24,
+        path: paths.suggestions,
+        element: <Suggestions/>
+    },
+    {
+        id: 25,
+        path: paths.aboutApp,
+        element: <AboutApp/>
+    },
+    {
+        id: 26,
         path: paths.notFound,
         element: <NotFound/>
     },

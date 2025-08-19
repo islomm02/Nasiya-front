@@ -7,7 +7,7 @@ const API_GET = axios.create({
 })
 
 API_GET.interceptors.request.use((config) => {
-      const [cookies, __, removeCookie] = useCookies(["token"]);
+      const [cookies, __setCookie, __removeCookie] = useCookies(["token"]);
    
   if (cookies.token) {
     config.headers.Authorization = `Bearer ${cookies.token}`

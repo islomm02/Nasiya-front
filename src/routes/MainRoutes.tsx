@@ -19,7 +19,7 @@ const MainRoutes = () => {
     }
   }, [token, navigate]);
 
-  if (!isReady) return null; // yoki loading bo‘lsa loading chiqarish mumkin
+  if (!isReady) return null;
 
   return (
     <Routes>

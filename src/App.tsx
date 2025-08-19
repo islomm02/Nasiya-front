@@ -3,7 +3,7 @@ import LoginRoutes from './routes/LoginRoute'
 import MainRoutes from './routes/MainRoutes'
 
 const App = () => {
-  const [cookies] = useCookies(['token'])
+  const [cookies, setCookie, removeCookie] = useCookies(['token'])
   const token = cookies.token
 
   return token ? <MainRoutes /> : <LoginRoutes />

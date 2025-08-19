@@ -44,6 +44,10 @@ const Clients = () => {
     }
   }, [search, users]);
 
+  const handleCreate = (id:string) => {
+    axios.post(`${API}/chat`, {debterId: id}, {headers: {Authorization: `Bearer ${cookies.token}`}}).then(res => {console.log(res); navigate("/report") })
+  }
+
   return (
     <>
       <div className="containers !mt-[29px]">
@@ -62,25 +66,22 @@ const Clients = () => {
             <FilterIcon />
           </button>
         </div>
-
+        <div className="text-center my-4">
+          <h2 className="text-[15px] font-semibold">Habar yuborish uchun mijozni tanlang</h2>
+        </div>
         <div className="space-y-[16px]">
           {filteredUsers.length > 0 ? (
             filteredUsers.map((item) => (
-              <ClientsComponent key={item.id} item={item} />
+                <div onClick={() => handleCreate(item.id)}>
+                    <ClientsComponent key={item.id} item={item} />
+                </div>
             ))
           ) : (
             <p className="text-center text-gray-500">Mijoz topilmadi</p>
           )}
         </div>
-
-        <button
-          onClick={() => navigate(paths.createClient)}
-          className="bg-[#3478F7] fixed bottom-20 right-4 py-[12px] px-[18px] flex gap-2 text-white rounded-[10px] font-medium text-[16px]"
-        >
-          <CreateUserIcon /> Yaratish
-        </button>
       </div>
-      <Footer activePage="clients" />
+      <Footer activePage="hisobot" />
     </>
   );
 };
