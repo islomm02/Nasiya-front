@@ -10,19 +10,14 @@ import Payments from "../components/Payments";
 import { FormatterPrice } from "../hooks/FormatterPrice";
 import Footer from "../components/Footer";
 import { paths } from "../hooks/paths";
-import axiosInstance from "../hooks/axiosInstamce";
 
 const Home = () => {
     const [cookies, __, removeCookie] = useCookies(["token", "refreshToken"]);
     const navigate = useNavigate();
     const [user, setUser] = useState<UserType | null>(null);
-    const [common, setCommon] = useState<any>(null)
+    const [__common, setCommon] = useState<any>(null)
     const [overdue, setOverdue] = useState<any>(null)
     const [clientsCount, setClientsCount] = useState<any>(null)
-    const handleLogout = () => {
-        removeCookie("token", { path: "/" });
-        navigate("/login");
-    };
 
     useEffect(() => {
   const fetchUser = async () => {
@@ -48,7 +43,7 @@ const Home = () => {
       // @ts-ignore
       if (error.response?.status === 401) {
         try {
-          const res = await axios.post(`${API}/auth/refresh`, {
+          await axios.post(`${API}/auth/refresh`, {
             refreshToken: cookies.refreshToken,
           });
 
