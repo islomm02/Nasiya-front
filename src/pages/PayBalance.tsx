@@ -11,7 +11,7 @@ import SuccessModal from "../components/SuccessModal";
 
 const PayBalance = () => {
     const navigate = useNavigate();
-    const [cookies, __, removeCookie] = useCookies(["token"]);
+    const [cookies, __setCookie, __removeCookie] = useCookies(["token"]);
     const [user, setUser] = useState<UserType | null>(null);
     const [amount, setAmount] = useState<number>(0);
     const [selected, setSelected] = useState<"p" | "c" | null>(null);

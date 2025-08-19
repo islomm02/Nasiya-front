@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ArrowLeft, Divide } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { API } from "../hooks/getEnv";
@@ -8,7 +8,6 @@ import { MoreIcon, ReportIcon, SendIcon } from "../assets/icons";
 import { useCookies } from "react-cookie";
 import ChatMessageCard from "../components/ChatMessageCard";
 import { formatDate } from "../hooks/formDate";
-import MessagesNot from "../components/MessagesNot";
 import ExampleMessagesCard from "../components/ExampleMessagesCard";
 
 const ReportMore = () => {
@@ -21,7 +20,7 @@ const ReportMore = () => {
 
     const [isMoreOpen, setIsMoreOpen] = useState<boolean>(false);
     const [debter, setDebter] = useState<DebterType | null>(null);
-    const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+    const [cookies, __setCookie, __removeCookie] = useCookies(["token"]);
     const [newMessage, setNewMessage] = useState<string>("");
     const navigate = useNavigate();
     const [isExampleOpen, setIsExampleOpen] = useState<boolean>(false)

@@ -5,27 +5,18 @@ import { useCookies } from "react-cookie";
 import { MoreIcon } from "../assets/icons";
 import axios from "axios";
 import { API } from "../hooks/getEnv";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const ExampleMessagesCard = ({ item , isMore}: { item: ExampleMessageType, isMore?:boolean }) => {
     const [isMoreOpen, setIsMoreOpen] = useState<boolean>(false);
-    const [deleteModalOpen, setDeleteModalOpen] = useState<boolean>(false);
+    const [__deleteModalOpen, setDeleteModalOpen] = useState<boolean>(false);
     const [cookies, __setCookie, __removeCookie] = useCookies(["token"]);
     const [status, setStatus] = useState(item.status)
     const navigate = useNavigate()
 
-    const handleDelete = (id: string) => {
-        axios.delete(`${API}/example-messages/${id}`, {
-            headers: { Authorization: `Bearer ${cookies.token}` },
-        });
-        toast.success("O'chirildi!");
-        setDeleteModalOpen(false)
-        window.location.reload()
-    };
 
     const handleSet = (id:string) => {
-        axios.patch(`${API}/example-messages/${id}`, {status: !item.status}, {headers: {Authorization: `Bearer ${cookies.token}`}}).then(res => setStatus(!status))
+        axios.patch(`${API}/example-messages/${id}`, {status: !item.status}, {headers: {Authorization: `Bearer ${cookies.token}`}}).then(() => setStatus(!status))
 
     }
 

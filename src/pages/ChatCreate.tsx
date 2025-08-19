@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { CreateUserIcon, FilterIcon, SearchIcon } from "../assets/icons";
+import { FilterIcon, SearchIcon } from "../assets/icons";
 import { useCookies } from "react-cookie";
 import ClientsComponent from "../components/ClientsComponent";
 import type { DebterType } from "../@types";
 import Footer from "../components/Footer";
-import { paths } from "../hooks/paths";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API } from "../hooks/getEnv";

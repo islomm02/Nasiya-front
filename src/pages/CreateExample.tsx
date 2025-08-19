@@ -9,10 +9,10 @@ import { paths } from "../hooks/paths"
 
 const CreateExample = () => {
   const navigate = useNavigate()
-  const [cookies, setCookie, removeCookie] = useCookies(["token"])
+  const [cookies, __setCookie, __removeCookie] = useCookies(["token"])
   const [message, setMessage] = useState("")
   const handleCreate = () => {
-    axios.post(`${API}/example-messages`, {text: message}, {headers: {Authorization: `Bearer ${cookies.token}`}}).then(res => {toast.success("Yaratildi!"); navigate(paths.exampleMessages)})
+    axios.post(`${API}/example-messages`, {text: message}, {headers: {Authorization: `Bearer ${cookies.token}`}}).then(() => {toast.success("Yaratildi!"); navigate(paths.exampleMessages)})
   }
   return (
     <div className="containers">

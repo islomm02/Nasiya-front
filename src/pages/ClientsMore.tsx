@@ -14,17 +14,16 @@ import { useCookies } from "react-cookie";
 
 const ClientsMore = () => {
     const [user, setUser] = useState<DebterType | null>(null);
-    const [cookies, setCookie, removeCookie] = useCookies(["token"])
+    const [cookies, __setCookie, __removeCookie] = useCookies(["token"])
     const [isMoreOpen, setIsMoreOpen] = useState<boolean>(false);
     const [deleteModalOpen, setDeleteModalOpen] = useState<boolean>(false);
     const { id } = useParams();
     const [star, setStar] = useState(user?.star)
-    const [commonDebts, setCommonDebts] = useState(0);
     const handleStar = (e: React.MouseEvent, id: string, item: DebterType) => {
     e.stopPropagation();
     const updateUser = async () => {
         try {
-            const res = await axios.patch(
+            await axios.patch(
                 `${API}/debter/${id}`,
                 { star: !item.star },
                 { headers: { Authorization: `Bearer ${cookies.token}` } }
@@ -45,7 +44,7 @@ const ClientsMore = () => {
     const navigate = useNavigate();
 
     const handleDelete = async () => {
-        await axios.delete(`${API}/debter/${id}`, {headers: {Authorization: `Bearer ${cookies.token}`}}).then((res) => {
+        await axios.delete(`${API}/debter/${id}`, {headers: {Authorization: `Bearer ${cookies.token}`}}).then(() => {
             
             setDeleteModalOpen(false);
             setIsMoreOpen(false);

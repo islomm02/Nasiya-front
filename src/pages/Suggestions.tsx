@@ -15,7 +15,7 @@ const Suggestions = () => {
         </div>
         <div>
             <h2 className="text-[22px] font-semibold max-w-[280px] ">Odatda bu yerga kamdan-kam kelishadi 😊</h2>
-            <Text extraClass="!text-[14px] !text-[#000000B2] !mt-3 !max-w-[335px] " title="Dastur haqida taklif yoki shikoyatlaringiz bo‘lsa bizga yozing. Albatta sizning fikringiz biz uchun juda muhim." />
+            <Text extraClass="!text-[14px] !text-[#000000B2] !mt-3 !max-w-[335px] " title="" >Dastur haqida taklif yoki shikoyatlaringiz bo‘lsa bizga yozing. Albatta sizning fikringiz biz uchun juda muhim.</Text>
         </div>
         <div>
               <h2 className=" mt-[40px] mb-[8px] text-[13px] font-semibold">Taklif va shikoyat</h2>

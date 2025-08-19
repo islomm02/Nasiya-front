@@ -12,7 +12,7 @@ const Help = () => {
             <h2 className="text-[18px] font-semibold ">Yordam</h2>
         </div>
         <div>
-            <Text extraClass="!text-[16px] !mb-2 !font-semibold " title="Biz doim siz bilan aloqadamiz" />
+            <Text  extraClass="!text-[16px] !mb-2 !font-semibold " title="" >Biz doim siz bilan aloqadamiz</Text>
             <h2 className=" !text-[14px] !text-[#000000B2] !max-w-[327px] ">Har qanday savollarga javob beramiz, buyurtma bilan yordam beramiz, istaklarni tinglaymiz</h2>
         </div>
         <div className="flex mt-[24px] items-center gap-[30px] ">

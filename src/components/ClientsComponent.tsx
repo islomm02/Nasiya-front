@@ -10,7 +10,7 @@ import { useState } from "react";
 const ClientsComponent = ({ item }: { item: DebterType }) => {
     const navigate = useNavigate();
     const [star, setStar] = useState(item.star)
-    const [cookies, setCookie, removeCookie] = useCookies([
+    const [cookies, __setCookie, removeCookie] = useCookies([
         "token",
         "refreshToken",
     ]);
@@ -30,11 +30,10 @@ const ClientsComponent = ({ item }: { item: DebterType }) => {
                 // @ts-ignore
                 if (err.response?.status === 401) {
                     try {
-                        const res = await axios.post(`${API}/auth/refresh`, {
+                        await axios.post(`${API}/auth/refresh`, {
                             refreshToken: cookies.refreshToken,
                         });
 
-                        const newAccessToken = res.data.token;
                     } catch (refreshError) {
                         console.error("Token refresh failed:", refreshError);
                     }

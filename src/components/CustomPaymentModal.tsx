@@ -18,7 +18,7 @@ const CustomPaymentModal = ({
     setIsOpen: (value: boolean) => void;
     itemId: string | undefined;
 }) => {
-    const [cookies, setCookie, removeCookie] = useCookies(["token", "refreshToken"]);
+    const [cookies, __setCookie, removeCookie] = useCookies(["token", "refreshToken"]);
     const navigate = useNavigate()
     const [debt, setDebt] = useState<DebtType | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -52,11 +52,10 @@ const CustomPaymentModal = ({
             // @ts-ignore
             if (error.response?.status === 401) {
         try {
-          const res = await axios.post(`${API}/auth/refresh`, {
+          await axios.post(`${API}/auth/refresh`, {
             refreshToken: cookies.refreshToken,
           });
 
-          const newAccessToken = res.data.token;
 
 
         } catch (refreshError) {

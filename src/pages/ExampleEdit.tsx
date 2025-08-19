@@ -10,14 +10,14 @@ import { paths } from "../hooks/paths"
 const ExampleEdit = () => {
     const {id} = useParams()
   const navigate = useNavigate()
-  const [cookies, setCookie, removeCookie] = useCookies(["token"])
+  const [cookies, __setCookie, __removeCookie] = useCookies(["token"])
   const [message, setMessage] = useState("")
   useEffect(() => {
     axios.get(`${API}/example-messages/${id}`, {headers: {Authorization: `Bearer ${cookies.token}`}}).then(res => setMessage(res.data.text))
   },[])
 
   const handleUpdate = () => {
-    axios.patch(`${API}/example-messages/${id}`, {text: message}, {headers: {Authorization: `Bearer ${cookies.token}`}}).then(res => {toast.success("Tahrirlandi!"); navigate(paths.exampleMessages)})
+    axios.patch(`${API}/example-messages/${id}`, {text: message}, {headers: {Authorization: `Bearer ${cookies.token}`}}).then(() => {toast.success("Tahrirlandi!"); navigate(paths.exampleMessages)})
   }
   return (
     <div className="containers">

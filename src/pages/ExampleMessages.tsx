@@ -6,14 +6,11 @@ import { API } from "../hooks/getEnv";
 import { useCookies } from "react-cookie";
 import type { ExampleMessageType } from "../@types";
 import { paths } from "../hooks/paths";
-import toast from "react-hot-toast";
 import ExampleMessagesCard from "../components/ExampleMessagesCard";
 
 const ExampleMessages = () => {
     const navigate = useNavigate();
-    const [isMoreOpen, setIsMoreOpen] = useState<boolean>(false)
-    const [deleteModalOpen, setDeleteModalOpen] = useState<boolean>(false)
-    const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+    const [cookies, __setCookie, __removeCookie] = useCookies(["token"]);
     const [examples, setExamples] = useState<ExampleMessageType[]>([]);
     useEffect(() => {
         axios
@@ -23,10 +20,7 @@ const ExampleMessages = () => {
             .then((res) => setExamples(res.data ));
     }, []);
 
-    const handleDelete = (id:string) => {
-        axios.delete(`${API}/example-messagea/${id}`, {headers: {Authorization: `Bearer ${cookies.token}`}})
-        toast.success("O'chirildi!")
-    }
+    
 
     return (
         <div className="containers">

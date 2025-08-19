@@ -18,7 +18,7 @@ const Report = () => {
         "bg-white rounded-[6px] text-[#3478F7] font-semibold  text-[14px] py-[9px] px-[38px] ";
     const inactiveStyle =
         "text-[#1A1A1ACC] font-medium text-[14px] py-[9px] px-[38px]";
-    const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+    const [cookies, __setCookie, __removeCookie] = useCookies(["token"]);
     const [payments, setPayments] = useState<PaymentsType[] >([]);
     const [chats, setChats] = useState<ChatType[] | []>([]);
     const navigate = useNavigate();

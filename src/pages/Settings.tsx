@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 
 const Settings = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(["token"])
+  const [__cookies, __setCookie, removeCookie] = useCookies(["token"])
   const [isLogoutOpen, setIsLogoutOpen] = useState<boolean>(false)
   const navigate = useNavigate()
   return (
