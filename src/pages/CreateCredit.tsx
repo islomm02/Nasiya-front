@@ -61,8 +61,8 @@ const CreateCredit = () => {
         try {
             const uploadedUrl = await uploadToMulter(file);
 
-            if (index === 1) setImage1(`${API}/${uploadedUrl}`);
-            if (index === 2) setImage2(`${API}/${uploadedUrl}`);
+            if (index === 1) setImage1(`${uploadedUrl}`);
+            if (index === 2) setImage2(`${uploadedUrl}`);
         } catch (err) {
             toast.error("Rasm yuklashda xatolik");
             console.error("Rasm yuklashda xatolik:", err);
