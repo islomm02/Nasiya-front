@@ -1,6 +1,7 @@
 import { Calendar, Chat, Clients, ClientsMore, CreateClient, CreateCreadit, CreateExample, CreditMore, EditDetails, ExampleMessages, Help, HistoryPayments, Home, Login, NotFound, Report, Settings } from "../pages"
 import AboutApp from "../pages/AboutApp"
 import ChatCreate from "../pages/ChatCreate"
+import ClientsEdit from "../pages/ClientEdit"
 import CreditEdit from "../pages/CreditEdit"
 import ExampleEdit from "../pages/ExampleEdit"
 import Excition from "../pages/excition"
@@ -20,6 +21,7 @@ export const paths = {
     createClient: "/clients/create",
     credits: "/credits",
     creditsMore: "/credits/:id",
+    clientEdit: "/clients/:id/edit",
     creditsEdit: "/credits/:id/edit",
     creditscreate: "/credits/create/:id",
     exampleMessages: "/examples",
@@ -172,6 +174,11 @@ export const RoutesList = [
     },
     {
         id: 26,
+        path: paths.clientEdit,
+        element: <ClientsEdit/>
+    },
+    {
+        id: 27,
         path: paths.notFound,
         element: <NotFound/>
     },

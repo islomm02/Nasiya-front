@@ -7,6 +7,7 @@ import { useCookies } from "react-cookie"
 import { EditPicIcon } from "../assets/icons"
 import Text from "../components/Text"
 import { useNavigate } from "react-router-dom"
+import toast from "react-hot-toast"
 
 const Profile = () => {
   const [me, setMe] = useState<SellerType | null>(null)
@@ -30,15 +31,17 @@ const Profile = () => {
     const file = e.target.files[0]
 
     const formData = new FormData()
-    formData.append("image", file)
+    formData.append("file", file)
 
     try {
-       await axios.post(`${API}/multer/upload`, formData, {
+       const imgRes = await axios.post(`${API}/multer/upload`, formData, {
         headers: {
           Authorization: `Bearer ${cookies.token}`,
           "Content-Type": "multipart/form-data",
         },
       })
+
+      await axios.patch(`${API}/sellers/${me?.id}`, {image: imgRes.data.url}, {headers: {Authorization: `Bearer ${cookies.token}`}}).then(res => res.status == 200 || 201 ? toast.success("O'zgartirildi!") : toast.error("Xatolik"))
       fetchProfile()
     } catch (err) {
       console.error("Image update error:", err)
