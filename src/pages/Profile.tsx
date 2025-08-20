@@ -38,7 +38,7 @@ const Profile = () => {
           Authorization: `Bearer ${cookies.token}`,
           "Content-Type": "multipart/form-data",
         },
-      }).then(res => console.log(res))
+      })
       fetchProfile()
     } catch (err) {
       console.error("Image update error:", err)

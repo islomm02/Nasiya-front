@@ -12,7 +12,6 @@ import ExampleMessagesCard from "../components/ExampleMessagesCard";
 
 const ReportMore = () => {
     const { id } = useParams();
-    console.log(id);
     
     const [messages, setMessages] = useState<MessageType[]>([]);
     const [deleteModalOpen, setDeleteModalOpen] = useState<boolean>(false);
@@ -33,7 +32,6 @@ const ReportMore = () => {
                         headers: { Authorization: `Bearer ${cookies.token}` },
                     }
                 );
-                console.log(res);
 
                 axios.get(`${API}/example-messages`, {headers: {Authorization: `Bearer ${cookies.token}`}}).then(res => setExamples(res.data))
                 
@@ -63,7 +61,6 @@ const ReportMore = () => {
                 { headers: { Authorization: `Bearer ${cookies.token}` } }
             )
             .then((res) => {
-                console.log(res);
                 
                 const createdMessage = res.data;
                 setMessages((prev) => [...prev, createdMessage]);
@@ -80,7 +77,6 @@ const ReportMore = () => {
                 headers: { Authorization: `Bearer ${cookies.token}` },
             })
             .then((res) => {
-                console.log(res);
                 
                 setDeleteModalOpen(false);
                 setIsMoreOpen(false);

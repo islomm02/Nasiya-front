@@ -26,7 +26,7 @@ const CreditMore = () => {
             setDebt(debtRes.data);
 
             const imgRes = await axios.get(`${API}/images-debt?debtId=${id}`);
-            console.log(imgRes);
+            console.log(imgRes.data.image);
             
             setDebtImg(imgRes.data.image || []); 
         } catch (err) {
@@ -39,8 +39,7 @@ const CreditMore = () => {
     }, []);
 
     const handleDelete = async () => {
-        await axios.delete(`${API}/debt/${id}`, {headers: {Authorization: `Bearer ${cookies.token}`}}).then((res) => {
-            console.log(res);
+        await axios.delete(`${API}/debt/${id}`, {headers: {Authorization: `Bearer ${cookies.token}`}}).then(() => {
             
             setDeleteModalOpen(false);
             setIsMoreOpen(false);
@@ -110,7 +109,7 @@ const CreditMore = () => {
                     <p>Rasm</p>
                     <div className="flex mt-[10px] justify-between ">
                         {debtImg[0] ? <a target="__blank" href={`${API}/${debtImg[0]}`}><img className=" h-[112px] object-cover rounded-[16px]" width={158} height={112} src={`${API}/${debtImg[0]}`} alt="" /></a> : null}
-                        {debtImg[1] ? <a target="__blank" href={debtImg[1]}> <img className=" h-[112px] object-cover rounded-[16px]" width={158} height={112} src={`${debtImg[1]}`} alt="" /> </a> : null}
+                        {debtImg[1] ? <a target="__blank" href={`${API}/${debtImg[1]}`}> <img className=" h-[112px] object-cover rounded-[16px]" width={158} height={112} src={`${API}/${debtImg[1]}`} alt="" /> </a> : null}
                     </div>
                 </div>
                 <button onClick={() => navigate(`/excition/${id}`)} className="px-[118px] mt-20 py-[13px] bg-[#3478F7] w-full hover:bg-[#2c6dd6] text-[18px] font-medium text-white rounded-[10px]">Sondirish</button>

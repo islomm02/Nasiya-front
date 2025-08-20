@@ -44,7 +44,7 @@ const Clients = () => {
   }, [search, users]);
 
   const handleCreate = (id:string) => {
-    axios.post(`${API}/chat`, {debterId: id}, {headers: {Authorization: `Bearer ${cookies.token}`}}).then(res => {console.log(res); navigate("/report") })
+    axios.post(`${API}/chat`, {debterId: id}, {headers: {Authorization: `Bearer ${cookies.token}`}}).then(() => { navigate("/report") })
   }
 
   return (

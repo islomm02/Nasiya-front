@@ -28,7 +28,6 @@ const CustomForm: React.FC = () => {
   const handleLogin = async (values: any) => {
     setIsLoading(true);
     setGlobalError(null);
-    console.log(values);
     
     try {
       const res = await axios.post(`${API}/auth/login`, values);

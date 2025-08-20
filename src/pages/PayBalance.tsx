@@ -19,7 +19,7 @@ const PayBalance = () => {
 
     const handlePay = () => {
         const updateBalance = async () => {
-            await axios.patch(`${API}/sellers/${user?.id}`, {balance: user?.balance ? user.balance + amount : amount}, {headers: {Authorization: `Bearer ${cookies.token}`}}).then(res => {setIsSuccessOpen(true); console.log(res)})
+            await axios.patch(`${API}/sellers/${user?.id}`, {balance: user?.balance ? user.balance + amount : amount}, {headers: {Authorization: `Bearer ${cookies.token}`}}).then(() => {setIsSuccessOpen(true); })
         }
         updateBalance()
     }
@@ -41,6 +41,11 @@ const PayBalance = () => {
             fetchUser();
         }
     }, [cookies.token]);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const rawValue = e.target.value.replace(/\D/g, "");
+  setAmount(Number(rawValue));
+};
 
     if(isSuccessOpen) return <SuccessModal to="/" action={"to'landi"} />
 
@@ -65,7 +70,7 @@ const PayBalance = () => {
                     To‘lov miqdori
                 </h2>
                 <input
-                    onChange={(e) => setAmount(Number(e.target.value))}
+                    onChange={handleChange}
                     className="w-full mb-4 py-[14px] pl-[16px] rounded-[8px] border-[1px] border-[#EDEDED]  "
                     value={FormatterPrice(amount)?.space}
                     placeholder="Miqdorni kiriting"

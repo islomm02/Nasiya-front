@@ -17,6 +17,7 @@ const CreateCredit = () => {
     const [date, setDate] = useState("");
     const [useToday, setUseToday] = useState(false);
     const [isFocused, setIsFocused] = useState(false);
+    const [isButtonLoading, setIsButtonLoading] = useState(false);
     const [term, setTerm] = useState("");
     const [note, setNote] = useState("");
     const [amount, setAmount] = useState("");
@@ -71,6 +72,7 @@ const CreateCredit = () => {
 
     const handleSubmit = async () => {
         try {
+            setIsButtonLoading(true)
             const createdAtValue = date
                 ? new Date(date).toISOString()
                 : new Date().toISOString();
@@ -106,6 +108,7 @@ const CreateCredit = () => {
             if (image2) await saveImage(image2);
 
             toast.success("Yaratildi!");
+            setIsButtonLoading(false)
             navigate(`/clients/${id}`);
         } catch (error) {
             console.error(error);
@@ -204,7 +207,7 @@ const CreateCredit = () => {
                         {image1 ? (
                             <div className="relative h-[120px]">
                                 <img
-                                    src={image1}
+                                    src={`${API}/${image1}`}
                                     alt="Rasm 1"
                                     className="w-full h-full object-cover rounded-[8px]"
                                 />
@@ -252,7 +255,7 @@ const CreateCredit = () => {
                         {image2 ? (
                             <div className="relative h-[120px]">
                                 <img
-                                    src={image2}
+                                    src={`${API}/${image2}`}
                                     alt="Rasm 2"
                                     className="w-full h-full object-cover rounded-[8px]"
                                 />
@@ -300,14 +303,14 @@ const CreateCredit = () => {
 
             <button
                 onClick={handleSubmit}
-                disabled={!isFormValid}
+                disabled={!isFormValid || isButtonLoading}
                 className={`px-[118px] mt-[32px] py-[13px] w-full rounded-[10px] text-[18px] font-medium transition ${
                     isFormValid
                         ? "bg-[#3478F7] hover:bg-[#2c6dd6] text-white"
                         : "bg-[#dbe7ff] text-gray-400"
                 }`}
             >
-                Saqlash
+                { isButtonLoading ? "Yuklanmoqda..." :  "Saqlash"}
             </button>
         </div>
     );

@@ -74,7 +74,6 @@ const CreateClient = () => {
       navigate(-1);
     } catch (error:any) {
       if (axios.isAxiosError(error)) {
-    console.log("Server javobi:", error.response?.data);
     console.log("Status kodi:", error.response?.status);
   }
       const errMsg =
