@@ -76,7 +76,7 @@ const ReportMore = () => {
             .delete(`${API}/chat/delete/${id}`, {
                 headers: { Authorization: `Bearer ${cookies.token}` },
             })
-            .then((res) => {
+            .then(() => {
                 
                 setDeleteModalOpen(false);
                 setIsMoreOpen(false);
